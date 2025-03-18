@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programming Languages and Technologies</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2d3e50;
+      --secondary-color: #1abc9c;
+      --tertiary-color: #3498db;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light-color);
+      color: var(--dark-color);
+    }
+    
+    .navbar {
+      background-color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    
+    .category-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-card .card-header {
+      background-color: var(--secondary-color);
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 15px;
+    }
+    
+    .category-card .card-body {
+      padding: 20px;
+    }
+    
+    .language-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .language-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .language-item .badge {
+      background-color: var(--tertiary-color);
+      margin-right: 5px;
+    }
+    
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 30px 0;
+    }
+    
+    .search-box {
+      background-color: white;
+      border-radius: 30px;
+      padding: 10px 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+    
+    .theme-toggle {
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background-color: var(--light-color);
+      color: var(--dark-color);
+      transition: all 0.3s ease;
+    }
+    
+    .dark-mode {
+      --light-color: #1a1a1a;
+      --dark-color: #f0f0f0;
+    }
+    
+    .dark-mode .navbar,
+    .dark-mode footer {
+      background-color: #111;
+    }
+    
+    .dark-mode .card {
+      background-color: #222;
+      color: #f0f0f0;
+    }
+    
+    .dark-mode .search-box {
+      background-color: #333;
+      color: #f0f0f0;
+    }
+    
+    .dark-mode .search-box input {
+      background-color: #333;
+      color: #f0f0f0;
+    }
+    
+    @media (max-width: 767px) {
+      .hero {
+        padding: 60px 0;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .category-card {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-code"></i> TechStack
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#languages">Languages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#frameworks">Frameworks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tools">Tools</a>
+          </li>
+          <li class="nav-item ms-2">
+            <div class="theme-toggle">
+              <i class="fas fa-moon"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Explore Programming Languages & Technologies</h1>
+      <p>Your comprehensive guide to modern programming languages, frameworks, libraries, and development tools.</p>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="search-box">
+            <input type="text" placeholder="Search languages, frameworks, or tools..." id="searchInput">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-5" id="main-content">
+    <div class="container">
+      <!-- Languages Section -->
+      <h2 class="mb-4 text-center" id="languages">Programming Languages</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Web Development</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>JavaScript</h5>
+                <p>The language of the web, powering interactive experiences across browsers.</p>
+                <span class="badge">Frontend</span>
+                <span class="badge">Backend</span>
+              </div>
+              <div class="language-item">
+                <h5>TypeScript</h5>
+                <p>JavaScript with syntax for types, enhancing code quality and maintainability.</p>
+                <span class="badge">Static Typing</span>
+              </div>
+              <div class="language-item">
+                <h5>PHP</h5>
+                <p>Server-side scripting language designed for web development.</p>
+                <span class="badge">Backend</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">General Purpose</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>Python</h5>
+                <p>Known for its readability and versatility across many domains.</p>
+                <span class="badge">Data Science</span>
+                <span class="badge">AI</span>
+              </div>
+              <div class="language-item">
+                <h5>Java</h5>
+                <p>Write once, run anywhere. Powers enterprise applications worldwide.</p>
+                <span class="badge">Enterprise</span>
+              </div>
+              <div class="language-item">
+                <h5>C#</h5>
+                <p>Microsoft's language for .NET ecosystem with strong typing and OOP features.</p>
+                <span class="badge">Windows</span>
+                <span class="badge">Games</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Specialized</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>Rust</h5>
+                <p>Modern systems programming with memory safety without garbage collection.</p>
+                <span class="badge">Systems</span>
+              </div>
+              <div class="language-item">
+                <h5>Go</h5>
+                <p>Simple and efficient language designed at Google for scalable services.</p>
+                <span class="badge">Backend</span>
+                <span class="badge">Cloud</span>
+              </div>
+              <div class="language-item">
+                <h5>Swift</h5>
+                <p>Apple's language for iOS, macOS, watchOS, and tvOS development.</p>
+                <span class="badge">Mobile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frameworks Section -->
+      <h2 class="mb-4 mt-5 text-center" id="frameworks">Frameworks & Libraries</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Frontend</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>React</h5>
+                <p>JavaScript library for building user interfaces with component-based architecture.</p>
+                <span class="badge">UI</span>
+              </div>
+              <div class="language-item">
+                <h5>Vue.js</h5>
+                <p>Progressive framework for building UIs with an approachable learning curve.</p>
+                <span class="badge">SPA</span>
+              </div>
+              <div class="language-item">
+                <h5>Angular</h5>
+                <p>Platform for building mobile and desktop web applications.</p>
+                <span class="badge">Enterprise</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Backend</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>Node.js</h5>
+                <p>JavaScript runtime built on Chrome's V8 engine for server-side applications.</p>
+                <span class="badge">JavaScript</span>
+              </div>
+              <div class="language-item">
+                <h5>Django</h5>
+                <p>High-level Python web framework that encourages rapid development.</p>
+                <span class="badge">Python</span>
+              </div>
+              <div class="language-item">
+                <h5>Ruby on Rails</h5>
+                <p>Server-side web application framework written in Ruby.</p>
+                <span class="badge">MVC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Data & AI</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>TensorFlow</h5>
+                <p>Open-source platform for machine learning and artificial intelligence.</p>
+                <span class="badge">ML</span>
+              </div>
+              <div class="language-item">
+                <h5>PyTorch</h5>
+                <p>Open source machine learning library based on Torch.</p>
+                <span class="badge">Deep Learning</span>
+              </div>
+              <div class="language-item">
+                <h5>Pandas</h5>
+                <p>Data manipulation and analysis library for Python.</p>
+                <span class="badge">Data Analysis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools Section -->
+      <h2 class="mb-4 mt-5 text-center" id="tools">Developer Tools</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Version Control</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>Git</h5>
+                <p>Distributed version control system for tracking code changes.</p>
+                <span class="badge">Essential</span>
+              </div>
+              <div class="language-item">
+                <h5>GitHub</h5>
+                <p>Web-based hosting service for Git repositories with collaboration features.</p>
+                <span class="badge">Collaboration</span>
+              </div>
+              <div class="language-item">
+                <h5>GitLab</h5>
+                <p>DevOps platform that combines Git repository management with CI/CD.</p>
+                <span class="badge">DevOps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Build Tools</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>Webpack</h5>
+                <p>Static module bundler for modern JavaScript applications.</p>
+                <span class="badge">Frontend</span>
+              </div>
+              <div class="language-item">
+                <h5>Docker</h5>
+                <p>Platform for developing, shipping, and running applications in containers.</p>
+                <span class="badge">Containerization</span>
+              </div>
+              <div class="language-item">
+                <h5>Jenkins</h5>
+                <p>Open-source automation server for building, testing, and deploying code.</p>
+                <span class="badge">CI/CD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card category-card">
+            <div class="card-header">Editors & IDEs</div>
+            <div class="card-body">
+              <div class="language-item">
+                <h5>Visual Studio Code</h5>
+                <p>Lightweight but powerful source code editor with extensions.</p>
+                <span class="badge">Cross-Platform</span>
+              </div>
+              <div class="language-item">
+                <h5>IntelliJ IDEA</h5>
+                <p>Integrated development environment for Java and other JVM languages.</p>
+                <span class="badge">Java</span>
+              </div>
+              <div class="language-item">
+                <h5>Sublime Text</h5>
+                <p>Sophisticated text editor for code, markup, and prose.</p>
+                <span class="badge">Performance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>TechStack Explorer</h4>
+          <p>Your guide to modern programming languages and technologies.</p>
+        </div>
+        <div class="col-md-3">
+          <h5>Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">Tutorials</a></li>
+            <li><a href="#" class="text-white">Documentation</a></li>
+            <li><a href="#" class="text-white">Community</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5>Connect</h5>
+          <div class="d-flex">
+            <a href="#" class="text-white me-3"><i class="fab fa-github fa-lg"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 text-center">
+          <p>© 2025 TechStack Explorer. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+      // Dark mode toggle
+      $('.theme-toggle').click(function() {
+        $('body').toggleClass('dark-mode');
+        if ($('body').hasClass('dark-mode')) {
+          $('.theme-toggle i').removeClass('fa-moon').addClass('fa-sun');
+        } else {
+          $('.theme-toggle i').removeClass('fa-sun').addClass('fa-moon');
+        }
+      });
+      
+      // Search functionality
+      $('#searchInput').on('keyup', function() {
+        const searchText = $(this).val().toLowerCase();
+        let found = false;
+        
+        $('.language-item').each(function() {
+          const itemText = $(this).text().toLowerCase();
+          if (itemText.indexOf(searchText) > -1) {
+            $(this).show();
+            found = true;
+          } else {
+            $(this).hide();
+          }
+        });
+        
+        // Show all items if search box is empty
+        if (searchText === '') {
+          $('.language-item').show();
+        }
+      });
+      
+      // Smooth scrolling for navbar links
+      $('a.nav-link').click(function(e) {
+        if (this.hash !== '') {
+          e.preventDefault();
+          const hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top - 70
+          }, 800);
+        }
+      });
+      
+      // Animation for cards on scroll
+      $(window).scroll(function() {
+        $('.category-card').each(function() {
+          const cardPosition = $(this).offset().top;
+          const scrollPosition = $(window).scrollTop() + $(window).height();
+          
+          if (scrollPosition > cardPosition + 100) {
+            $(this).css('opacity', '1');
+          }
+        });
+      });
+      
+      // Initialize with opacity 0 for scroll animation
+      $('.category-card').css('opacity', '0');
+      $('.category-card').css('transition', 'opacity 0.5s ease');
+      
+      // Trigger scroll event on page load
+      $(window).trigger('scroll');
+    });
+  </script>
+</body>
+</html>
